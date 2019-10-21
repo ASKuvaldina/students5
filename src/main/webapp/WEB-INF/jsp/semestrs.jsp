@@ -22,7 +22,7 @@
 </nav>
 <div class="boxSite">
     <span>Выбрать семестр</span>
-    <form action="/terms" method="get" id="ChoiseSemForm">
+    <form action="/semestrs" method="get" id="ChoiseSemForm">
         <select name="selectedTermId" id="multipleSelect">
             <c:forEach items="${semestrs}" var="sem">
                 <c:choose>
@@ -44,7 +44,7 @@
         <div class="table">
             <div class="tableName">Список дисциплин семестра
                 <div class="table-row">
-                    <div class="table-cellH " style="height: auto">Наименование дисциплины</div>
+                    <div class="table-cellH">Наименование дисциплины</div>
                 </div>
                 <div class="table-row">
                     <c:forEach items="${disciplinesInSemestr}" var="ds">
@@ -56,19 +56,20 @@
     </div>
     <div class="secondRow">
 
+        <c:if test="${role eq 'admin'}">
+            <form action="/create-semestr" method="get">
+                <input type="submit" value="Создать семестр" class="buttonModify">
+            </form>
+            <form action="/modify-semestrs" id="modifSemForm">
+                <input type="submit" value="Модифицировать семестр" class="buttonModify">
+                <input type="hidden" name="idModifSem" value="${selectedTerm.id}">
+            </form>
+            <form action="/delete-semestr" method="get" id="deleteSemForm">
+                <input type="submit" value="Удалить семестр"  class="buttonModify">
 
-        <form action="/create-semestr" method="get">
-            <input type="submit" value="Создать семестр" class="buttonModify">
-        </form>
-        <form action="/modify-semestrs" id="modifSemForm">
-            <input type="submit" onclick="modifingSemestr()" value="Модифицировать семестр" class="buttonModify">
-            <input type="hidden" name="idModifSem" id="idModifSem">
-        </form>
-        <form action="/delete-semestr" method="get" id="deleteSemForm">
-            <input type="submit" value="Удалить семестр" onclick="deleteSemestr()" class="buttonModify">
-
-            <input type="hidden" name="idsDeleteSem" id="idsDeleteSem">
-        </form>
+                <input type="hidden" name="idsDeleteSem" id="idsDeleteSem">
+            </form>
+        </c:if>
     </div>
 </div>
 </body>

@@ -1,9 +1,6 @@
 package database;
 
-import entity.Account;
-import entity.Discipline;
-import entity.Semestr;
-import entity.Student;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +15,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students_1?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from discipline where status = 1");
             while (rs.next()) {
@@ -38,7 +35,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students_1?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from discipline where status = 1 and id = " + id);
             while (rs.next()) {
@@ -57,7 +54,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students_1?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `discipline` (`discipline`)  VALUES ('" + newDisc + "')\n;");
         } catch (Exception e) {
@@ -69,7 +66,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `date`) VALUES ('" + newSurname + "', '" + newName + "', '" + newGroup + "', '" + newDate + "')\n;");
         } catch (Exception e) {
@@ -82,7 +79,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from semestr where status = 1");
             while (rs.next()) {
@@ -104,7 +101,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from student where status = 1");
             while (rs.next()) {
@@ -113,7 +110,7 @@ public class DBManager {
                 student.setSurname(rs.getString("surname"));
                 student.setName(rs.getString("name"));
                 student.setGroup(rs.getString("group"));
-                student.setDate(rs.getString("date"));
+                student.setDate(rs.getDate("date"));
                 students.add(student);
             }
         } catch (Exception e) {
@@ -127,7 +124,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             stmt.execute("UPDATE `discipline` SET `discipline` = '" + newName + "' WHERE (`id` = '" + idDisc + "');\n");
         } catch (Exception e) {
@@ -140,7 +137,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             stmt.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` = '" + id + "');");
         } catch (Exception e) {
@@ -152,7 +149,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM account where login = '" + login + "' and password = '" + password + "' and role = '" + role + "';");
             while (rs.next()) {
@@ -174,7 +171,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             stmt.execute("UPDATE `student` SET `surname` = '" + newSurname + "', `name` = '" + newName + "', `group` = '" + newGroup + "', `date` = '" + newDate + "' WHERE (`id` = '" + newId + "');\n");
         } catch (Exception e) {
@@ -186,7 +183,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from student where status = 1 and id = " + idStud);
             while (rs.next()) {
@@ -194,7 +191,7 @@ public class DBManager {
                 student.setId(rs.getInt("id"));
                 student.setSurname(rs.getString("surname"));
                 student.setName(rs.getString("name"));
-                student.setDate(rs.getString("date"));
+                student.setDate(rs.getDate("date"));
                 student.setGroup(rs.getString("group"));
                 return student;
             }
@@ -208,7 +205,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             stmt.execute("UPDATE `student` SET `status` = '0' WHERE (`id` = '" + id + "');");
         } catch (Exception e) {
@@ -221,7 +218,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `semestr` (`semestr`, `duration`) VALUES ('" + newSemestr + "', '" + newDuration + "');\n;");
         } catch (Exception e) {
@@ -233,7 +230,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
 
             ResultSet idLastSem = stmt.executeQuery("SELECT MAX(`id`) FROM `semestr`");
@@ -250,7 +247,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from semestr where status = 1 and id = " + idSem);
             while (rs.next()) {
@@ -266,13 +263,15 @@ public class DBManager {
         return null;
     }
 
-    public static void modifySemestr(String newId, String newDuration) {
+    public static void modifySemestr(String newId, String[] idDiscSemModify) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
-            stmt.execute("UPDATE `semestr` SET `duration` = '" + newDuration + "' WHERE (`id` = '" + newId + "');\n");
+            for (String idDisc : idDiscSemModify) {
+                stmt.execute("UPDATE `semestr_discipline` SET `id_disciplines` = '" + idDisc + "' WHERE (`id_semestr` = '" + newId + "')\n;");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -282,7 +281,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
 
             stmt.execute("INSERT INTO `semestr_discipline` (`id_ semestr`, `id_disciplines`) VALUES ('" + newId + "', '" + id + "');\n");
@@ -296,7 +295,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "vitaly");
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM semestr_discipline as sd\n" +
                     "left join discipline as d on sd.id_disciplines = d.id\n" +
@@ -314,5 +313,38 @@ public class DBManager {
             e.printStackTrace();
         }
         return disciplinesInSemestr;
+    }
+
+    public static List<Mark> getMarksByStudentSemestr(String idStud, int idSemestr) {
+        ArrayList<Mark> marks = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM mark\n" +
+                    "left join semestr_discipline as sd on mark.id_semestr_discipline = sd.id\n" +
+                    "left join discipline as d on sd.id_disciplines = d.id\n" +
+                    "left join semestr as s on sd.id_semestr = s.id\n" +
+                    "where mark.id_stud = "+ idStud + "\n"+
+                    "and sd.id_semestr = " + idSemestr + "\n"+
+                    "and d.status = 1\n" +
+                    "and s.status = 1");
+
+            while (rs.next()) {
+                Mark mark = new Mark();
+                Discipline discipline = new Discipline();
+                discipline.setId(rs.getInt("id_disciplines"));
+                discipline.setDiscipline(rs.getString("discipline"));
+                discipline.setStatus(1);
+                mark.setDiscipline(discipline);
+                mark.setMark(rs.getString("mark"));
+                marks.add(mark);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return marks;
     }
 }

@@ -1,7 +1,8 @@
 package controllers;
 
 import database.DBManager;
-import entity.Discipline;
+
+import entity.Mark;
 import entity.Semestr;
 import entity.Student;
 
@@ -19,11 +20,15 @@ public class StudentProgressController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idStud = req.getParameter("idProgStud");
         Student student = DBManager.getStudentbyid(idStud);
-        req.setAttribute("student",student);
         List<Semestr> semestrs = DBManager.getAllActiveSemestrs();
+        Semestr selectedSemestr = semestrs.get(0);
+        List<Mark> marks = DBManager.getMarksByStudentSemestr(idStud,selectedSemestr.getId());
+        req.setAttribute("marks",marks);
+        req.setAttribute("student",student);
         req.setAttribute("semestrs",semestrs);
-        List<Discipline> disciplines = DBManager.getAllActiveDisciplines();
-        req.setAttribute("disciplines",disciplines);
+        req.setAttribute("selectedSemestr",selectedSemestr);
+
+
         req.getRequestDispatcher("/WEB-INF/jsp/studentProgress.jsp").forward(req,resp);
 
     }

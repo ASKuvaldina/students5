@@ -15,7 +15,7 @@
 <nav class="top-menu">
     <ul class="menu-main">
         <li class="left-item"><a href="/logout">Logout</a></li>
-        <li class="right-item"><a href="../../index.jsp" class="first">На главную</a></li>
+        <li class="right-item"><a href="/" class="first">На главную</a></li>
         <li class="right-item"><a href="javascript:history.back()" title="Вернуться на предыдущую страницу">Назад</a></li>
     </ul>
     <div class="box">Система управления студентами и их успеваемостью</div>
@@ -24,9 +24,9 @@
 
 <div class="boxSite">
     <div class="firstRow">
-
-            <input type="submit" onclick="progressStudent()" value="Просмотреть успеваемость студента" class="buttonModify">
         <form action="/progress-student" id="ProgStudForm">
+            <input type="submit" onclick="progressStudent()" value="Просмотреть успеваемость студента" class="buttonModify">
+
             <input type="hidden" name="idProgStud" id="idProgStud">
         </form>
 <c:if test="${role eq 'admin'}">

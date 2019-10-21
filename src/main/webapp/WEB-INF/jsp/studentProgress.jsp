@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
                 <div class="table-cell">${student.surname}</div>
                 <div class="table-cell">${student.name}</div>
                 <div class="table-cell">${student.group}</div>
-                <div class="table-cell">${student.date}</div>
+                <div class="table-cell"><f:formatDate value="${student.date}" pattern="dd/MM/yyyy"></f:formatDate></div>
             </div>
         </div>
 
@@ -44,10 +45,10 @@
                     <div class="table-cellH group">Дисциплина</div>
                     <div class="table-cellH date">Оценка</div>
                 </div>
-                <c:forEach items="${disciplines}" var="d">
+                <c:forEach items="${marks}" var="mark">
                     <div class="table-row">
-                        <div class="table-cell">${d.discipline}</div>
-                        <div class="table-cell">${d.id}</div>
+                        <div class="table-cell">${mark.discipline.discipline}</div>
+                        <div class="table-cell">${mark.mark}</div>
                     </div>
                 </c:forEach>
             </div>

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +25,9 @@
                     <option value="student">Студент</option>
                 </select>
                 <input type="submit" value="ВОЙТИ">
+                <c:if test="${error eq 1}">
+                    <p>Пользователь не найден!</p>
+                </c:if>
                 <footer class="clearfix">
                     <p><span class="info">?</span><a href="#">Забыли пароль?</a></p>
                 </footer>

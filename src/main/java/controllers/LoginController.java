@@ -28,9 +28,10 @@ public class LoginController extends HttpServlet {
             req.getSession().setAttribute("isLogin","1");
             req.getSession().setAttribute("login",account.getLogin());
             req.getSession().setAttribute("role",account.getRole());
-
             resp.sendRedirect("/");
         } else {
+            req.setAttribute("error", 1);
+            req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
 
         }
     }

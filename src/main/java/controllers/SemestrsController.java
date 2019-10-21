@@ -20,17 +20,18 @@ public class SemestrsController extends HttpServlet {
         List<Semestr> semestrs = DBManager.getAllActiveSemestrs();
         req.setAttribute("semestrs", semestrs);
         if (selectedTermId == null) {
-            req.setAttribute("selectedTerm",semestrs.get(0));
-            List<Discipline> disciplinesInSemestr = DBManager.getDisciplinesInSemestr(semestrs.get(0).getId()+"");
-            req.setAttribute("disciplinesInSemestr",disciplinesInSemestr);
-        } else { for(Semestr semestr:semestrs){
-            String semestrId = semestr.getId()+"";
-            if(semestrId.equals(selectedTermId)){
-                req.setAttribute("selectedTerm",semestr);
-                List<Discipline> disciplinesInSemestr = DBManager.getDisciplinesInSemestr(semestr.getId()+"");
-                req.setAttribute("disciplinesInSemestr",disciplinesInSemestr);
+            req.setAttribute("selectedTerm", semestrs.get(0));
+            List<Discipline> disciplinesInSemestr = DBManager.getDisciplinesInSemestr(semestrs.get(0).getId() + "");
+            req.setAttribute("disciplinesInSemestr", disciplinesInSemestr);
+        } else {
+            for (Semestr semestr : semestrs) {
+                String semestrId = semestr.getId() + "";
+                if (semestrId.equals(selectedTermId)) {
+                    req.setAttribute("selectedTerm", semestr);
+                    List<Discipline> disciplinesInSemestr = DBManager.getDisciplinesInSemestr(semestr.getId() + "");
+                    req.setAttribute("disciplinesInSemestr", disciplinesInSemestr);
+                }
             }
-        }
 
         }
 

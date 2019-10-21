@@ -1,15 +1,17 @@
 package entity;
 
+import java.util.Date;
+
 public class Student {
 
     private int id;
     private String surname;
     private String name;
     private String group;
-    private String date;
+    private Date date;
     private int status = 1;
 
-    public Student(){
+    public Student() {
 
     }
 
@@ -45,11 +47,11 @@ public class Student {
         this.group = group;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -64,27 +66,26 @@ public class Student {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Student)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Student student = (Student) o;
 
-        if (getId() != student.getId()) return false;
-        if (getStatus() != student.getStatus()) return false;
-        if (getSurname() != null ? !getSurname().equals(student.getSurname()) : student.getSurname() != null)
-            return false;
-        if (getName() != null ? !getName().equals(student.getName()) : student.getName() != null) return false;
-        if (getGroup() != null ? !getGroup().equals(student.getGroup()) : student.getGroup() != null) return false;
-        return getDate() != null ? getDate().equals(student.getDate()) : student.getDate() == null;
+        if (id != student.id) return false;
+        if (status != student.status) return false;
+        if (surname != null ? !surname.equals(student.surname) : student.surname != null) return false;
+        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+        if (group != null ? !group.equals(student.group) : student.group != null) return false;
+        return date != null ? date.equals(student.date) : student.date == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getGroup() != null ? getGroup().hashCode() : 0);
-        result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
-        result = 31 * result + getStatus();
+        int result = id;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + status;
         return result;
     }
 
@@ -95,8 +96,10 @@ public class Student {
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
                 ", group='" + group + '\'' +
-                ", date='" + date + '\'' +
+                ", date=" + date +
                 ", status=" + status +
                 '}';
     }
 }
+
+

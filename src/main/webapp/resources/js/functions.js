@@ -77,15 +77,18 @@ function progressStudent() {
 }
 
 function modifingSemestr() {
-    var checkboxes = $('#multipleSelect:selected').val();
-    // var checkboxes = $('#select-beast').selectize({
-    //     create: true,
-    //     sortField: 'text'
-    // });
+    var checkboxes = $('input[type = checkbox]:checked');
+    if (checkboxes.length == 0) {
+        alert("Выберите хотя бы одну дисциплину!");
+        return;
+    }
+    var idDisc = "";
+    for (var i = 0; i < checkboxes.length; i++) {
+        idDisc = idDisc + checkboxes[i].value + ",";
+    }
 
 
-    var idSem = checkboxes[0].value;
-    $("#idModifSem").val(idSem);
+    $("#selectedDiscId").val(idDisc);
     $("#modifSemForm").submit();
 }
 
