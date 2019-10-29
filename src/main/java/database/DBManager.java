@@ -263,13 +263,13 @@ public class DBManager {
         return null;
     }
 
-    public static void modifySemestr(String newId, String[] idDiscSemModify) {
+    public static void modifySemestr(int newId, int[] idDiscSemModify) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost/students_1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC", "root", "vitaly");
             Statement stmt = con.createStatement();
-            for (String idDisc : idDiscSemModify) {
+            for (int idDisc : idDiscSemModify) {
                 stmt.execute("UPDATE `semestr_discipline` SET `id_disciplines` = '" + idDisc + "' WHERE (`id_semestr` = '" + newId + "')\n;");
             }
         } catch (Exception e) {
