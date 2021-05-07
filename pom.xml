@@ -7,7 +7,10 @@
   <groupId>studing</groupId>
   <artifactId>students-5</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <modules>
+    <module>students5</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>students-5 Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
@@ -48,6 +51,14 @@
       <version>3.0.1</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+    <dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.1</version>
+  </dependency>
+
   </dependencies>
 
   <build>
